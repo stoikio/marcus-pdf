@@ -21,7 +21,6 @@ const DEFAULT_STYLES_LINE_HEIGHT = 1.05;
 const DEFAULT_STYLES_PAGE_MARGINS = 70;
 
 const DEFAULT_OPTIONS = {
-  title: undefined as unknown as string,
   pageOrientation: "portrait" as PageOrientation,
   pageSize: "A4" as PageSize,
   pageMargins: DEFAULT_STYLES_PAGE_MARGINS,

@@ -7,7 +7,7 @@ type PageNumber = (currentPage: number, pageCount: number) => string;
 export class PdfDocument {
   protected _footer!: PdfBlock;
   protected _pageNumber!: PageNumber;
-  protected _images: Record<string, string> = {};
+  protected _title!: string;
 
   constructor(protected pdf: Pdf, private rootBlock: PdfBlock) {}
 
@@ -25,8 +25,8 @@ export class PdfDocument {
     return this;
   }
 
-  images(images: Record<string, string>) {
-    this._images = images;
+  title(title: string) {
+    this._title = title;
     return this;
   }
 
@@ -59,11 +59,10 @@ export class PdfDocument {
         },
 
         info: {
-          title: this.pdf.options.title,
+          title: this._title,
         },
       },
       tableLayouts: this.pdf.tableLayouts,
-      images: this._images,
     } as const;
   }
 }
