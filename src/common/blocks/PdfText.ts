@@ -1,4 +1,4 @@
-import { deepmerge } from "deepmerge-ts";
+import deepmerge from "deepmerge";
 import { Alignment } from "pdfmake/interfaces";
 import { Pdf } from "./Pdf";
 import { PdfBlock } from "./PdfBlock";

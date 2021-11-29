@@ -1,4 +1,4 @@
-import { deepmerge } from "deepmerge-ts";
+
 import { PageOrientation, PageSize } from "pdfmake/interfaces";
 import { PdfDocument } from "./PdfDocument";
 import { PdfH1 } from "./PdfH1";
@@ -12,6 +12,8 @@ import { PdfTable } from "./PdfTable";
 import { PdfTableRow } from "./PdfTableRow";
 import { PdfText } from "./PdfText";
 import { DropFirstInTuple, RecursivePartial } from "../utils/types";
+
+import deepmerge from 'deepmerge'
 
 const DEFAULT_STYLES_COLOR = "#323232";
 const DEFAULT_STYLES_SECONDARY_COLOR = "#888888";
@@ -63,7 +65,7 @@ export class Pdf {
   tableLayouts: Record<string, any> = {};
 
   constructor(options?: RecursivePartial<PdfOptions>) {
-    this.options = (deepmerge(DEFAULT_OPTIONS, options) as PdfOptions) ?? DEFAULT_OPTIONS;
+    this.options = (deepmerge(DEFAULT_OPTIONS, options as any) as PdfOptions) ?? DEFAULT_OPTIONS;
   }
 
   public get styles() {

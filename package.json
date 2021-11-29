@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@types/pdfmake": "^0.1.19",
-    "deepmerge-ts": "^2.0.0",
+    "deepmerge": "^4.2.2",
     "pdfmake": "^0.2.4"
   },
   "devDependencies": {
