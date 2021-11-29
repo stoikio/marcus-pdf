@@ -1,3 +1,4 @@
+import { mapAsync } from "@stoikio/sdk";
 import PdfMake from "pdfmake/build/pdfmake";
 import { PdfDocument } from "../common/blocks";
 import { ClientPdf, GeneratePdfAssets } from "../common/utils/types";
@@ -6,7 +7,7 @@ export const generateClientPdf = async (doc: PdfDocument, assets: GeneratePdfAss
   const { document, tableLayouts } = doc.build();
   const { images, fonts } = assets;
 
-  Object.keys(images).forEach(async (key) => {
+  await mapAsync(Object.keys(images), async (key) => {
     const value = images[key];
 
     if (!value.startsWith("data:image")) {
