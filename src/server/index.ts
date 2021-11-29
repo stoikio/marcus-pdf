@@ -1,8 +1,8 @@
 import PdfMake from "pdfmake";
-import { PdfDocument } from "..";
-import { GeneratePdfAssets } from "../utils/types";
+import { PdfDocument } from "../common/blocks";
+import { GeneratePdfAssets, ServerPdf } from "../common/utils/types";
 
-export const generateServerPdf = (doc: PdfDocument, assets: GeneratePdfAssets) => {
+export const generateServerPdf = (doc: PdfDocument, assets: GeneratePdfAssets): ServerPdf => {
   const { document, tableLayouts } = doc.build();
   const { images, fonts } = assets;
 

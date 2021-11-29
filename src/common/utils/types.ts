@@ -1,3 +1,4 @@
+import { TCreatedPdf } from "pdfmake/build/pdfmake";
 import { TFontDictionary } from "pdfmake/interfaces";
 
 export type DropFirstInTuple<T extends any[]> = ((...args: T) => any) extends (arg: any, ...rest: infer U) => any ? U : T;
@@ -10,3 +11,6 @@ export type GeneratePdfAssets = {
   fonts: TFontDictionary;
   images: Record<string, any>;
 };
+
+export type ServerPdf = PDFKit.PDFDocument;
+export type ClientPdf = TCreatedPdf;
