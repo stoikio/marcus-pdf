@@ -20,8 +20,10 @@ export class PdfTable extends PdfBlock {
     return this;
   }
 
-  Body(...rows: PdfTableRow[]) {
-    this._rows = [...this._rows, ...rows];
+  Body(...rows: (PdfTableRow | undefined)[]) {
+    const filteredRows = rows.filter((row): row is PdfTableRow => typeof row !== "undefined")
+    this._rows = [...this._rows, ...filteredRows];
+
     return this;
   }
 
