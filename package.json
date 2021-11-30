@@ -8,7 +8,6 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@stoikio/sdk": "^1.1.47",
     "@types/pdfmake": "^0.1.19",
     "deepmerge": "^4.2.2",
     "pdfmake": "^0.2.4"
