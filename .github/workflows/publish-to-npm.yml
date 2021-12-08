@@ -20,6 +20,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: cp ./package.json ./dist/package.json
-      - run: cp ./README.md ./dist/README.md
       - run: sed -i.bak "s/dist\///" ./dist/package.json
+      - run: cp ./README.md ./dist/README.md
+      - run: perl -0777 -i.bak -pe "s/<\!\-\-  Start dark mode only  \-\->(.|\n)+<\!\-\-  End dark mode only  \-\->//m" ./dist/README.md
       - run: npm publish dist
