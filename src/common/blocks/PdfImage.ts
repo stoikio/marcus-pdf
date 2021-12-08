@@ -1,22 +1,18 @@
-import { Pdf } from "./Pdf";
-import { PdfBlock } from "./PdfBlock";
+import deepmerge from "deepmerge";
+import { PDF } from "./PDF";
+import { PDFBlock } from "./PDFBlock";
 
-export class PdfImage extends PdfBlock {
-  _width: number = this.pdf.styles.image.defaultWidth;
-
-  constructor(protected pdf: Pdf, private path: string) {
+export class PDFImage extends PDFBlock {
+  constructor(protected pdf: PDF, private path: string) {
     super();
   }
 
-  width(width: number) {
-    this._width = width;
-    return this;
-  }
-
   build() {
-    return {
+    const build = {
       image: this.path,
       width: this._width,
-    };
+    }
+
+    return deepmerge(super.build(), build);
   }
 }

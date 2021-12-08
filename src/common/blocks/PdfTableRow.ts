@@ -1,9 +1,9 @@
-import { Pdf } from "./Pdf";
-import { PdfBlock } from "./PdfBlock";
-import { PdfText } from "./PdfText";
+import { PDF } from "./PDF";
+import { PDFBlock } from "./PDFBlock";
+import { PDFText } from "./PDFText";
 
-export class PdfTableRow extends PdfBlock {
-  private _blocks: PdfBlock[];
+export class PDFTableRow extends PDFBlock {
+  private _blocks: PDFBlock[];
   protected _bold: boolean = this.pdf.styles.bold;
   protected _color: string = this.pdf.styles.color;
   protected _fillColor: string = this.pdf.styles.table.row.fillColor;
@@ -12,11 +12,11 @@ export class PdfTableRow extends PdfBlock {
   private _spaceBefore: boolean = false;
   private _spaceAfter: boolean = false;
 
-  constructor(protected pdf: Pdf, ...blocks: (PdfBlock | string)[]) {
+  constructor(protected pdf: PDF, ...blocks: (PDFBlock | string)[]) {
     super();
     this._blocks = blocks.map((block) => {
       if (typeof block === "string") {
-        return new PdfText(pdf, block);
+        return new PDFText(pdf, block);
       } else {
         return block;
       }

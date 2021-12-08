@@ -1,17 +1,17 @@
 
 import { PageOrientation, PageSize } from "pdfmake/interfaces";
-import { PdfDocument } from "./PdfDocument";
-import { PdfH1 } from "./PdfH1";
-import { PdfH2 } from "./PdfH2";
-import { PdfImage } from "./PdfImage";
-import { PdfList } from "./PdfList";
-import { PdfPageBreak } from "./PdfPageBreak";
-import { PdfParagraph } from "./PdfParagraph";
-import { PdfSpace } from "./PdfSpace";
-import { PdfTable } from "./PdfTable";
-import { PdfTableRow } from "./PdfTableRow";
-import { PdfText } from "./PdfText";
-import { DropFirstInTuple, RecursivePartial } from "../utils/types";
+import { PDFDocument } from "./PDFDocument";
+import { PDFH1 } from "./PDFH1";
+import { PDFH2 } from "./PDFH2";
+import { PDFImage } from "./PDFImage";
+import { PDFList } from "./PDFList";
+import { PDFPageBreak } from "./PDFPageBreak";
+import { PDFParagraph } from "./PDFParagraph";
+import { PDFSpace } from "./PDFSpace";
+import { PDFTable } from "./PDFTable";
+import { PDFTableRow } from "./PDFTableRow";
+import { PDFText } from "./PDFText";
+import { DropFirstInTuple, RecursivePartial } from "../types";
 
 import deepmerge from 'deepmerge'
 
@@ -27,7 +27,7 @@ const DEFAULT_OPTIONS = {
   pageSize: "A4" as PageSize,
   pageMargins: DEFAULT_STYLES_PAGE_MARGINS,
   styles: {
-    font: "Roboto" as string,
+    font: "Helvetica" as string,
     color: DEFAULT_STYLES_COLOR,
     secondaryColor: DEFAULT_STYLES_SECONDARY_COLOR,
     bold: DEFAULT_STYLES_BOLD,
@@ -39,7 +39,7 @@ const DEFAULT_OPTIONS = {
     h1: {
       fontSize: 18,
       lineHeight: 1,
-      bold: false,
+      bold: true,
       color: undefined as unknown as string,
     },
     h2: {
@@ -58,14 +58,14 @@ const DEFAULT_OPTIONS = {
   },
 };
 
-type PdfOptions = typeof DEFAULT_OPTIONS;
+type PDFOptions = typeof DEFAULT_OPTIONS;
 
-export class Pdf {
-  options: PdfOptions;
+export class PDF {
+  options: PDFOptions;
   tableLayouts: Record<string, any> = {};
 
-  constructor(options?: RecursivePartial<PdfOptions>) {
-    this.options = (deepmerge(DEFAULT_OPTIONS, options as any) as PdfOptions) ?? DEFAULT_OPTIONS;
+  constructor(options?: RecursivePartial<PDFOptions>) {
+    this.options = (deepmerge(DEFAULT_OPTIONS, options as any) as PDFOptions) ?? DEFAULT_OPTIONS;
   }
 
   public get styles() {
@@ -80,15 +80,15 @@ export class Pdf {
     return (...arg) => new class_(this, ...arg);
   };
 
-  Image = this.factory(PdfImage);
-  Text = this.factory(PdfText);
-  H1 = this.factory(PdfH1);
-  H2 = this.factory(PdfH2);
-  Paragraph = this.factory(PdfParagraph);
-  Space = this.factory(PdfSpace);
-  Document = this.factory(PdfDocument);
-  PageBreak = this.factory(PdfPageBreak);
-  Table = this.factory(PdfTable);
-  TableRow = this.factory(PdfTableRow);
-  List = this.factory(PdfList);
+  Image = this.factory(PDFImage);
+  Text = this.factory(PDFText);
+  H1 = this.factory(PDFH1);
+  H2 = this.factory(PDFH2);
+  Paragraph = this.factory(PDFParagraph);
+  Space = this.factory(PDFSpace);
+  Document = this.factory(PDFDocument);
+  PageBreak = this.factory(PDFPageBreak);
+  Table = this.factory(PDFTable);
+  TableRow = this.factory(PDFTableRow);
+  List = this.factory(PDFList);
 }
