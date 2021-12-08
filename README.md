@@ -15,6 +15,6 @@
   <!--  End dark mode only  -->
   <br/>
   <a href="https://www.npmjs.com/package/marcus-pdf" target="_blank">
-    <img src="https://badge.fury.io/js/marcus-pdf.svg" alt="npm version" height="18">
+    <img src="https://img.shields.io/npm/v/marcus-pdf?" alt="npm version" height="18">
   </a>
 </p>
