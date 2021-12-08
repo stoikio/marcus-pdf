@@ -7,6 +7,14 @@
   "scripts": {
     "build": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stoikio/marcus-pdf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stoikio/marcus-pdf/issues"
+  },
+  "homepage": "https://github.com/stoikio/marcus-pdf#readme",
   "dependencies": {
     "@types/pdfmake": "^0.1.19",
     "deepmerge": "^4.2.2",
