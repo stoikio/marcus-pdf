@@ -1,17 +1,17 @@
-import { Pdf } from "./Pdf";
-import { pushBetween } from "../utils/push-between";
-import { PdfBlock } from "./PdfBlock";
-import { PdfText } from "./PdfText";
+import { PDF } from "./PDF";
+import { pushBetween } from "../utils";
+import { PDFBlock } from "./PDFBlock";
+import { PDFText } from "./PDFText";
 
-export class PdfParagraph extends PdfBlock {
-  private _texts: PdfText[];
+export class PDFParagraph extends PDFBlock {
+  private _texts: PDFText[];
   private _noSpace: boolean = false;
 
-  constructor(protected pdf: Pdf, ...texts: (PdfText | string)[]) {
+  constructor(protected pdf: PDF, ...texts: (PDFText | string)[]) {
     super();
     this._texts = texts.map((text) => {
       if (typeof text === "string") {
-        return new PdfText(pdf, text);
+        return new PDFText(pdf, text);
       } else {
         return text;
       }
@@ -22,7 +22,7 @@ export class PdfParagraph extends PdfBlock {
     const transpiledTexts = this._texts.map((text) => text.build());
 
     return {
-      text: this._noSpace ? transpiledTexts : pushBetween(transpiledTexts, new PdfText(this.pdf, " ").build()),
+      text: this._noSpace ? transpiledTexts : pushBetween(transpiledTexts, new PDFText(this.pdf, " ").build()),
     };
   }
 

@@ -1,19 +1,19 @@
-import { Pdf } from "./Pdf";
-import { PdfBlock } from "./PdfBlock";
-import { PdfText } from "./PdfText";
+import { PDF } from "./PDF";
+import { PDFBlock } from "./PDFBlock";
+import { PDFText } from "./PDFText";
 
 type PageNumber = (currentPage: number, pageCount: number) => string;
 
-export class PdfDocument {
-  protected _footer!: PdfBlock;
+export class PDFDocument {
+  protected _footer!: PDFBlock;
   protected _pageNumber!: PageNumber;
   protected _title!: string;
 
-  constructor(protected pdf: Pdf, private rootBlock: PdfBlock) {}
+  constructor(protected pdf: PDF, private rootBlock: PDFBlock) {}
 
-  Footer(block: PdfBlock | string) {
+  Footer(block: PDFBlock | string) {
     if (typeof block === "string") {
-      this._footer = new PdfText(this.pdf, block);
+      this._footer = new PDFText(this.pdf, block);
     } else {
       this._footer = block;
     }
@@ -50,7 +50,7 @@ export class PdfDocument {
             columns: this._pageNumber
               ? [
                   this._footer?.build(), //
-                  new PdfText(this.pdf, this._pageNumber(currentPage, pageCount)).secondary().align("right").width(100).build(),
+                  new PDFText(this.pdf, this._pageNumber(currentPage, pageCount)).secondary().align("right").width(100).build(),
                 ]
               : [
                   this._footer?.build(), //

@@ -1,9 +1,9 @@
 import deepmerge from "deepmerge";
 import { Alignment } from "pdfmake/interfaces";
-import { Pdf } from "./Pdf";
-import { PdfBlock } from "./PdfBlock";
+import { PDF } from "./PDF";
+import { PDFBlock } from "./PDFBlock";
 
-export class PdfText extends PdfBlock {
+export class PDFText extends PDFBlock {
   protected _bold: boolean = this.pdf.styles.bold;
   protected _color!: string;
   protected _fontSize: number = this.pdf.styles.fontSize;
@@ -12,7 +12,7 @@ export class PdfText extends PdfBlock {
   protected _font: string = this.pdf.styles.font;
   protected _italics: boolean = false;
 
-  constructor(protected pdf: Pdf, private text: string) {
+  constructor(protected pdf: PDF, private text: string) {
     super();
   }
 

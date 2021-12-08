@@ -1,16 +1,16 @@
-import { Pdf } from "./Pdf";
-import { PdfBlock } from "./PdfBlock";
-import { PdfText } from "./PdfText";
+import { PDF } from "./PDF";
+import { PDFBlock } from "./PDFBlock";
+import { PDFText } from "./PDFText";
 
-export class PdfSpace extends PdfBlock {
-  blocks: PdfBlock[];
+export class PDFSpace extends PDFBlock {
+  blocks: PDFBlock[];
 
-  constructor(protected pdf: Pdf, private space: number, blocks: (PdfBlock | string)[]) {
+  constructor(protected pdf: PDF, private space: number, blocks: (PDFBlock | string)[]) {
     super();
 
     this.blocks = blocks.map((block) => {
       if (typeof block === "string") {
-        return new PdfText(pdf, block);
+        return new PDFText(pdf, block);
       } else {
         return block;
       }

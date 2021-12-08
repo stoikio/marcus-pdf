@@ -1,8 +1,8 @@
-import { Pdf } from "./Pdf";
-import { PdfBlock } from "./PdfBlock";
+import { PDF } from "./PDF";
+import { PDFBlock } from "./PDFBlock";
 
-export class PdfPageBreak extends PdfBlock {
-  constructor(protected pdf: Pdf) {
+export class PDFPageBreak extends PDFBlock {
+  constructor(protected pdf: PDF) {
     super();
   }
 

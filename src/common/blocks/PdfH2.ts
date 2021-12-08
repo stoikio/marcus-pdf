@@ -1,8 +1,8 @@
-import { Pdf } from "./Pdf";
-import { PdfText } from "./PdfText";
+import { PDF } from "./PDF";
+import { PDFText } from "./PDFText";
 
-export class PdfH2 extends PdfText {
-  constructor(protected pdf: Pdf, ...lines: string[]) {
+export class PDFH2 extends PDFText {
+  constructor(protected pdf: PDF, ...lines: string[]) {
     super(pdf, lines.join("\n"));
 
     this._fontSize = pdf.styles.h2.fontSize;

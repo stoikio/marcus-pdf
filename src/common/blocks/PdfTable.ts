@@ -1,17 +1,17 @@
-import { Pdf } from "./Pdf";
-import { PdfBlock } from "./PdfBlock";
-import { PdfTableRow } from "./PdfTableRow";
+import { PDF } from "./PDF";
+import { PDFBlock } from "./PDFBlock";
+import { PDFTableRow } from "./PDFTableRow";
 
-export class PdfTable extends PdfBlock {
+export class PDFTable extends PDFBlock {
   private _id: string = (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
-  private _rows: PdfTableRow[] = [];
+  private _rows: PDFTableRow[] = [];
   private _headerRows: number = 0;
   private _widths: string[] = [];
   private _borders: boolean = this.pdf.styles.table.borders;
   private _px: number = 0;
   private _py: number = 0;
 
-  constructor(protected pdf: Pdf) {
+  constructor(protected pdf: PDF) {
     super();
   }
 
@@ -20,8 +20,8 @@ export class PdfTable extends PdfBlock {
     return this;
   }
 
-  Body(...rows: (PdfTableRow | undefined)[]) {
-    const filteredRows = rows.filter((row): row is PdfTableRow => typeof row !== "undefined")
+  Body(...rows: (PDFTableRow | undefined)[]) {
+    const filteredRows = rows.filter((row): row is PDFTableRow => typeof row !== "undefined")
     this._rows = [...this._rows, ...filteredRows];
 
     return this;

@@ -6,11 +6,3 @@ export type DropFirstInTuple<T extends any[]> = ((...args: T) => any) extends (a
 export type RecursivePartial<T> = {
   [P in keyof T]?: RecursivePartial<T[P]>;
 };
-
-export type GeneratePdfAssets = {
-  fonts: TFontDictionary;
-  images: Record<string, any>;
-};
-
-export type ServerPdf = PDFKit.PDFDocument;
-export type ClientPdf = TCreatedPdf;
