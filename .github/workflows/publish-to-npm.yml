@@ -19,4 +19,6 @@ jobs:
       - run: ./.github/increment-version.sh -p
       - run: npm install
       - run: npm run build
-      - run: npm publish
+      - run: cp ./package.json ./dist/package.json
+      - run: sed -i.bak "s/dist\///" ./dist/package.json
+      - run: npm publish dist
