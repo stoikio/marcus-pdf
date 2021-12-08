@@ -1,3 +1,3 @@
-export * from "./client";
 export * from "./common";
-export * from "./server";
+export { buildPDF as buildServerPDF } from "./server";
+export { buildPDF as buildClientPDF } from "./client";

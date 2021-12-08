@@ -3,7 +3,7 @@ import { PDFDocument } from "../common/blocks/PDFDocument";
 import { ClientPDF, ClientPDFAssets } from "./types";
 import { mapAsync } from "./utils";
 
-export const generateClientPDF = async (doc: PDFDocument, assets: ClientPDFAssets): Promise<ClientPDF> => {
+export const buildPDF = async (doc: PDFDocument, assets: ClientPDFAssets): Promise<ClientPDF> => {
   const { document, tableLayouts } = doc.build();
   const { images, fonts } = assets;
 

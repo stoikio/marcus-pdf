@@ -1,4 +1,3 @@
-import { TCreatedPdf } from "pdfmake/build/pdfmake";
 import { TFontDictionary } from "pdfmake/interfaces";
 
 export type ServerPDFAssets = {
