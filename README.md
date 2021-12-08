@@ -12,5 +12,7 @@
     src="https://user-images.githubusercontent.com/23241961/145233641-c3028602-52f8-43e9-9dde-990c33c28f0e.png#gh-light-mode-only"
   />
   <br/>
-  <img src="https://badge.fury.io/js/marcus-pdf.svg" alt="npm version" height="18">
+  <a href="https://www.npmjs.com/package/marcus-pdf" target="_blank">
+    <img src="https://badge.fury.io/js/marcus-pdf.svg" alt="npm version" height="18">
+  </a>
 </p>
