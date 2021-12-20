@@ -8,7 +8,7 @@ export class PDFTextStyle extends PDFBlock {
   protected _color!: string;
   protected _fontSize: number = this.pdf.styles.fontSize;
   protected _lineHeight: number = this.pdf.styles.lineHeight;
-  protected _alignment: Alignment = "left";
+  protected _align: Alignment = "left";
   protected _font: string = this.pdf.styles.font;
   protected _italics: boolean = false;
 
@@ -16,8 +16,8 @@ export class PDFTextStyle extends PDFBlock {
     super();
   }
 
-  align(alignment: Alignment) {
-    this._alignment = alignment;
+  align(align: Alignment) {
+    this._align = align;
     return this;
   }
 
@@ -59,7 +59,7 @@ export class PDFTextStyle extends PDFBlock {
   build() {
     const build = {
       style: {
-        alignment: this._alignment,
+        align: this._align,
         bold: this._bold,
         color: this._color,
         font: this._font,
