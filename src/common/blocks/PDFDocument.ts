@@ -40,7 +40,7 @@ export class PDFDocument {
           lineHeight: this.pdf.styles.lineHeight,
         },
 
-        pageMargins: [this.pdf.options.pageMargins, this.pdf.options.pageMargins, this.pdf.options.pageMargins, this.pdf.options.pageMargins],
+        pageMargins: this.pdf.options.pageMargins,
         pageOrientation: this.pdf.options.pageOrientation,
         pageSize: this.pdf.options.pageSize,
 

@@ -34,7 +34,7 @@ export class PDFBlock {
       rowSpan: this._rowSpan,
       colSpan: this._colSpan,
       width: this._width,
-      absolutePosition: this._absoluteX && this._absoluteY ? { x: this._absoluteX, y: this._absoluteY } : undefined
+      absolutePosition: this._absoluteX !== undefined && this._absoluteY !== undefined ? { x: this._absoluteX, y: this._absoluteY } : undefined
     };
   }
 }
