@@ -1,3 +1,5 @@
+import { Alignment } from "pdfmake/interfaces";
+
 export class PDFBlock {
   protected _colSpan: number = 1;
   protected _rowSpan: number = 1;
@@ -14,6 +16,7 @@ export class PDFBlock {
     this._rowSpan = rowSpan;
     return this;
   }
+
 
   width(width: number) {
     this._width = width;
@@ -32,7 +35,6 @@ export class PDFBlock {
       colSpan: this._colSpan,
       width: this._width,
       absolutePosition: this._absoluteX && this._absoluteY ? { x: this._absoluteX, y: this._absoluteY } : undefined
-    }
-      ;
+    };
   }
 }

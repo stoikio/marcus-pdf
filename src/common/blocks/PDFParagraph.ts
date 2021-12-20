@@ -2,13 +2,16 @@ import { PDF } from "./PDF";
 import { pushBetween } from "../utils";
 import { PDFBlock } from "./PDFBlock";
 import { PDFText } from "./PDFText";
+import deepmerge from "deepmerge";
+import { PDFTextStyle } from "./PDFTextStyle";
 
-export class PDFParagraph extends PDFBlock {
+export class PDFParagraph extends PDFTextStyle {
   private _texts: PDFText[];
-  private _noSpace: boolean = false;
+  private _noSpaces: boolean = false;
 
   constructor(protected pdf: PDF, ...texts: (PDFText | string)[]) {
-    super();
+    super(pdf);
+
     this._texts = texts.map((text) => {
       if (typeof text === "string") {
         return new PDFText(pdf, text);
@@ -18,16 +21,18 @@ export class PDFParagraph extends PDFBlock {
     });
   }
 
+  noSpaces() {
+    this._noSpaces = true;
+    return this;
+  }
+
   build() {
     const transpiledTexts = this._texts.map((text) => text.build());
 
-    return {
-      text: this._noSpace ? transpiledTexts : pushBetween(transpiledTexts, new PDFText(this.pdf, " ").build()),
+    const build = {
+      text: this._noSpaces ? transpiledTexts : pushBetween(transpiledTexts, new PDFText(this.pdf, " ").build()),
     };
-  }
 
-  noSpace() {
-    this._noSpace = true;
-    return this;
+    return deepmerge(super.build(), build);
   }
 }

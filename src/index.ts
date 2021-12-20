@@ -1,3 +1,6 @@
 export * from "./common";
-export { buildPDF as buildServerPDF } from "./server";
-export { buildPDF as buildClientPDF } from "./client";
+export { generatePDF as generateServerPDF } from "./server";
+export { generatePDF as generateClientPDF } from "./client";
+export * from "./server";
+// @ts-ignore
+export * from "./client";

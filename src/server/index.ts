@@ -1,3 +1,3 @@
-export * from './buildPDF'
+export * from './generatePDF'
 export * from './types'
 export * from '../common'

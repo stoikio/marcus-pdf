@@ -4,6 +4,7 @@ import { PDFDocument } from "./PDFDocument";
 import { PDFH1 } from "./PDFH1";
 import { PDFH2 } from "./PDFH2";
 import { PDFImage } from "./PDFImage";
+import { PDFSVG } from "./PDFSVG";
 import { PDFList } from "./PDFList";
 import { PDFPageBreak } from "./PDFPageBreak";
 import { PDFParagraph } from "./PDFParagraph";
@@ -80,6 +81,7 @@ export class PDF {
     return (...arg) => new class_(this, ...arg);
   };
 
+  SVG = this.factory(PDFSVG);
   Image = this.factory(PDFImage);
   Text = this.factory(PDFText);
   H1 = this.factory(PDFH1);
