@@ -8,7 +8,10 @@ export const pushBetween = <T, I>(arr: T[], item: I): (T | I)[] => {
   }, [] as (T | I)[]);
 };
 
-export const mergeMargin = (margin1: number | [number, number] | [number, number, number, number], margin2: number | [number, number] | [number, number, number, number]) => {
+export const mergeMargin = (
+  margin1: number | [number, number] | [number, number, number, number],
+  margin2: number | [number, number] | [number, number, number, number]
+): [number, number, number, number] => {
   let finalMargin1 = margin1
 
   if (typeof finalMargin1 === 'number') {
