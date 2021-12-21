@@ -50,7 +50,7 @@ export class PDFDocument {
             columns: this._pageNumber
               ? [
                   this._footer?.build(), //
-                  new PDFText(this.pdf, this._pageNumber(currentPage, pageCount)).secondary().align("right").width(100).build(),
+                  new PDFText(this.pdf, this._pageNumber(currentPage, pageCount)).secondary().alignment("right").width(100).build(),
                 ]
               : [
                   this._footer?.build(), //
