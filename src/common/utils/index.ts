@@ -8,25 +8,31 @@ export const pushBetween = <T, I>(arr: T[], item: I): (T | I)[] => {
   }, [] as (T | I)[]);
 };
 
+
+export const formatMargin = (margin: number | [number, number] | [number, number, number, number]): [number, number, number, number] => {
+  if (typeof margin === 'number') {
+    return [margin, margin, margin, margin]
+  }
+
+  if (margin.length === 2) {
+    return [margin[0], margin[1], margin[0], margin[1]]
+  }
+
+  return margin
+}
+
 export const mergeMargin = (
   margin1: number | [number, number] | [number, number, number, number],
   margin2: number | [number, number] | [number, number, number, number]
 ): [number, number, number, number] => {
-  let finalMargin1 = margin1
+  let formattedMargin1 = formatMargin(margin1)
 
-  if (typeof finalMargin1 === 'number') {
-    finalMargin1 = [finalMargin1, finalMargin1, finalMargin1, finalMargin1]
-  } else if (Array.isArray(finalMargin1) && finalMargin1.length === 2) {
-    finalMargin1 = [finalMargin1[0], finalMargin1[1], finalMargin1[0], finalMargin1[1]]
-  }
+  let formattedMargin2 = formatMargin(margin2)
 
-  let finalMargin2 = margin2
-
-  if (typeof finalMargin2 === 'number') {
-    finalMargin2 = [finalMargin2, finalMargin2, finalMargin2, finalMargin2]
-  } else if (Array.isArray(finalMargin2) && finalMargin2.length === 2) {
-    finalMargin2 = [finalMargin2[0], finalMargin2[1], finalMargin2[0], finalMargin2[1]]
-  }
-
-  return [finalMargin1[0] + finalMargin2[0], finalMargin1[1] + finalMargin2[1], finalMargin1[2] + finalMargin2[2], finalMargin1[3] + finalMargin2[3]]
+  return [
+    formattedMargin1[0] + formattedMargin2[0],
+    formattedMargin1[1] + formattedMargin2[1],
+    formattedMargin1[2] + formattedMargin2[2],
+    formattedMargin1[3] + formattedMargin2[3]
+  ]
 }

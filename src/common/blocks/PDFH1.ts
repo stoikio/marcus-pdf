@@ -6,9 +6,9 @@ export class PDFH1 extends PDFText {
     super(pdf, lines.join("\n"));
 
     this._fontSize = pdf.styles.h1.fontSize;
-    this._lineHeight = pdf.styles.h1.lineHeight;
+    this._lineHeight = pdf.styles.h1.lineHeight ?? pdf.styles.lineHeight;
     this._color = pdf.styles.h1.color ?? pdf.styles.color;
-    this._bold = pdf.styles.h1.bold ?? pdf.styles.bold;
+    this._bold = pdf.styles.h1.bold;
   }
 
   build() {

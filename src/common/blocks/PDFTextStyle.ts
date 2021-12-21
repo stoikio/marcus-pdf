@@ -4,8 +4,8 @@ import { PDF } from "./PDF";
 import { PDFBlock } from "./PDFBlock";
 
 export class PDFTextStyle extends PDFBlock {
-  protected _bold: boolean = this.pdf.styles.bold;
-  protected _color!: string;
+  protected _bold: boolean = false;
+  protected _color: string = this.pdf.styles.color;
   protected _fontSize: number = this.pdf.styles.fontSize;
   protected _lineHeight: number = this.pdf.styles.lineHeight;
   protected _alignment: Alignment = "left";

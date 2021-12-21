@@ -1,27 +1,20 @@
+import { formatMargin, mergeMargin } from "../utils";
 import { PDF } from "./PDF";
 import { PDFBlock } from "./PDFBlock";
 import { PDFText } from "./PDFText";
 
-type PageNumber = (currentPage: number, pageCount: number) => string;
-
 export class PDFDocument {
-  protected _footer!: PDFBlock;
-  protected _pageNumber!: PageNumber;
+  protected _footer?: ((currentPage: number, pageCount: number) => (PDFBlock | string));
   protected _title!: string;
 
-  constructor(protected pdf: PDF, private rootBlock: PDFBlock) {}
+  constructor(protected pdf: PDF, private rootBlock: PDFBlock) { }
 
-  Footer(block: PDFBlock | string) {
-    if (typeof block === "string") {
-      this._footer = new PDFText(this.pdf, block);
+  Footer(content: PDFBlock | string | ((currentPage: number, pageCount: number) => PDFBlock | string)) {
+    if (typeof content === 'function') {
+      this._footer = content;
     } else {
-      this._footer = block;
+      this._footer = (() => content);
     }
-    return this;
-  }
-
-  PageNumber(pageNumber?: PageNumber) {
-    this._pageNumber = pageNumber ?? ((currentPage, pageCount) => `${currentPage}/${pageCount}`);
     return this;
   }
 
@@ -44,19 +37,18 @@ export class PDFDocument {
         pageOrientation: this.pdf.options.pageOrientation,
         pageSize: this.pdf.options.pageSize,
 
-        footer: (currentPage: any, pageCount: any) => {
+        footer: this._footer ? (currentPage: number, pageCount: number) => {
+          const margin = formatMargin(this.pdf.options.pageMargins)
+
+          const content = this._footer ? this._footer(currentPage, pageCount) : undefined
+
           return {
-            margin: [this.pdf.options.pageMargins, 0, this.pdf.options.pageMargins, 0],
-            columns: this._pageNumber
-              ? [
-                  this._footer?.build(), //
-                  new PDFText(this.pdf, this._pageNumber(currentPage, pageCount)).secondary().alignment("right").width(100).build(),
-                ]
-              : [
-                  this._footer?.build(), //
-                ],
+            margin: [margin[0], 0, margin[2], 0],
+            columns: content ? [
+              (typeof content === "string" ? new PDFText(this.pdf, content) : content).build(),
+            ] : undefined,
           };
-        },
+        } : undefined,
 
         info: {
           title: this._title,

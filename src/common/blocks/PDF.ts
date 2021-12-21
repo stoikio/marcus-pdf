@@ -15,10 +15,11 @@ import { PDFText } from "./PDFText";
 import { DropFirstInTuple, RecursivePartial } from "../types";
 
 import deepmerge from 'deepmerge'
+import { PDFH3 } from "./PDFH3";
+import { PDFH4 } from "./PDFH4";
 
 const DEFAULT_STYLES_COLOR = "#323232";
 const DEFAULT_STYLES_SECONDARY_COLOR = "#888888";
-const DEFAULT_STYLES_BOLD = false;
 const DEFAULT_STYLES_FONT_SIZE = 10;
 const DEFAULT_STYLES_LINE_HEIGHT = 1.05;
 const DEFAULT_STYLES_PAGE_MARGINS = [64, 48];
@@ -31,7 +32,6 @@ const DEFAULT_OPTIONS = {
     font: "Helvetica" as string,
     color: DEFAULT_STYLES_COLOR,
     secondaryColor: DEFAULT_STYLES_SECONDARY_COLOR,
-    bold: DEFAULT_STYLES_BOLD,
     fontSize: DEFAULT_STYLES_FONT_SIZE,
     lineHeight: DEFAULT_STYLES_LINE_HEIGHT,
     image: {
@@ -39,15 +39,27 @@ const DEFAULT_OPTIONS = {
     },
     h1: {
       fontSize: 18,
-      lineHeight: 1,
+      lineHeight: undefined,
       bold: true,
-      color: undefined as unknown as string,
+      color: undefined,
     },
     h2: {
-      fontSize: 12,
-      lineHeight: undefined as unknown as number,
+      fontSize: 16,
+      lineHeight: undefined,
       bold: true,
-      color: undefined as unknown as string,
+      color: undefined,
+    },
+    h3: {
+      fontSize: 14,
+      lineHeight: undefined,
+      bold: true,
+      color: undefined,
+    },
+    h4: {
+      fontSize: 12,
+      lineHeight: undefined,
+      bold: true,
+      color: undefined,
     },
     table: {
       borders: false,
@@ -81,16 +93,18 @@ export class PDF {
     return (...arg) => new class_(this, ...arg);
   };
 
-  SVG = this.factory(PDFSVG);
-  Image = this.factory(PDFImage);
-  Text = this.factory(PDFText);
+  Document = this.factory(PDFDocument);
   H1 = this.factory(PDFH1);
   H2 = this.factory(PDFH2);
+  H3 = this.factory(PDFH3);
+  H4 = this.factory(PDFH4);
+  Image = this.factory(PDFImage);
+  List = this.factory(PDFList);
+  PageBreak = this.factory(PDFPageBreak);
   Paragraph = this.factory(PDFParagraph);
   Space = this.factory(PDFSpace);
-  Document = this.factory(PDFDocument);
-  PageBreak = this.factory(PDFPageBreak);
+  SVG = this.factory(PDFSVG);
   Table = this.factory(PDFTable);
   TableRow = this.factory(PDFTableRow);
-  List = this.factory(PDFList);
+  Text = this.factory(PDFText);
 }

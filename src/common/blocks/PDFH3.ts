@@ -1,0 +1,17 @@
+import { PDF } from "./PDF";
+import { PDFText } from "./PDFText";
+
+export class PDFH3 extends PDFText {
+  constructor(protected pdf: PDF, ...lines: string[]) {
+    super(pdf, lines.join("\n"));
+
+    this._fontSize = pdf.styles.h3.fontSize;
+    this._lineHeight = pdf.styles.h3.lineHeight?? pdf.styles.lineHeight;
+    this._color = pdf.styles.h3.color ?? pdf.styles.color;
+    this._bold = pdf.styles.h3.bold;
+  }
+
+  build() {
+    return super.build();
+  }
+}
