@@ -5,7 +5,7 @@ import { PDFText } from "./PDFText";
 
 export class PDFTableRow extends PDFBlock {
   private _blocks: PDFBlock[];
-  protected _bold: boolean = this.pdf.styles.bold;
+  protected _bold: boolean = false;
   protected _color: string = this.pdf.styles.color;
   protected _fillColor: string = this.pdf.styles.table.row.fillColor;
   protected _fontSize: number = this.pdf.styles.fontSize;
