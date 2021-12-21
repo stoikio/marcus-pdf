@@ -21,7 +21,7 @@ export class PDFList extends PDFBlock {
   build() {
     return {
       [this.type === "unordered" ? "ul" : "ol"]: this.blocks.map((block) => block.build()),
-      margin: [4, 0],
+      margin: [4, 0, 0, 0],
     };
   }
 }

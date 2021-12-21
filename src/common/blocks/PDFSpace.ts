@@ -1,3 +1,4 @@
+import { mergeMargin } from "../utils";
 import { PDF } from "./PDF";
 import { PDFBlock } from "./PDFBlock";
 import { PDFText } from "./PDFText";
@@ -22,9 +23,13 @@ export class PDFSpace extends PDFBlock {
       if (i === this.blocks.length - 1) {
         return block.build();
       } else {
+        const space = block.build().absolute ? 0 : this.space
+
+        const margin = mergeMargin(block.build().margin ?? 0, [0, 0, 0, space])
+
         return {
           ...block.build(),
-          margin: [0, 0, 0, this.space],
+          margin,
         };
       }
     });

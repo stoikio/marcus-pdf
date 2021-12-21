@@ -1,3 +1,4 @@
+import { mergeMargin } from "../utils";
 import { PDF } from "./PDF";
 import { PDFBlock } from "./PDFBlock";
 import { PDFText } from "./PDFText";
@@ -65,15 +66,17 @@ export class PDFTableRow extends PDFBlock {
     const topMargin = typeof this._py === "number" ? this._py * spaceBeforeMultiplier : py * spaceBeforeMultiplier;
     const bottomMargin = typeof this._py === "number" ? this._py * spaceAfterMultiplier : py * spaceAfterMultiplier;
 
-    const margin = [0, topMargin, 0, bottomMargin];
+    return this._blocks.map((block) => {
+      const margin = mergeMargin(block.build().margin ?? 0, [0, topMargin, 0, bottomMargin])
 
-    return this._blocks.map((block) => ({
-      ...block.build(),
-      fillColor: this._fillColor,
-      color: this._color,
-      bold: this._bold,
-      fontSize: this._fontSize,
-      margin,
-    }));
+      return ({
+        ...block.build(),
+        fillColor: this._fillColor,
+        color: this._color,
+        bold: this._bold,
+        fontSize: this._fontSize,
+        margin,
+      })
+    });
   }
 }
