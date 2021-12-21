@@ -30,7 +30,7 @@ const DEFAULT_FONTS = {
   }
 };
 
-export const generatePDF = (doc: PDFDocument, assets: ServerPDFAssets = {}): ServerPDF => {
+export const generateServerPDF = (doc: PDFDocument, assets: ServerPDFAssets = {}): ServerPDF => {
   const { document, tableLayouts } = doc.build();
   const { images, fonts = {} } = assets;
 

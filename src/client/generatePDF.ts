@@ -12,7 +12,7 @@ export const DEFAULT_FONTS = {
   },
 };
 
-export const generatePDF = async (doc: PDFDocument, assets: ClientPDFAssets = {}): Promise<ClientPDF> => {
+export const generateClientPDF = async (doc: PDFDocument, assets: ClientPDFAssets = {}): Promise<ClientPDF> => {
   const { document, tableLayouts } = doc.build();
   const { images, fonts = DEFAULT_FONTS } = assets;
 
